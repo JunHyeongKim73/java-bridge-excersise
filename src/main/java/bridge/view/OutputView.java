@@ -25,18 +25,27 @@ public class OutputView {
                 if (j != 0) {
                     System.out.print("| ");
                 }
-                if (i != maps.get(j).getPosition()) {
-                    System.out.print("  ");
-                    continue;
-                }
-                if (maps.get(j).isSuccess()) {
-                    System.out.print("O ");
-                    continue;
-                }
-                System.out.print("X ");
+
+                printElement(i, maps.get(j));
             }
             System.out.println("]");
         }
+    }
+
+    private void printElement(int i, MoveResult result) {
+        if (i != result.getPosition()) {
+            System.out.print("  ");
+            return;
+        }
+        printSuccessOrFail(result.isSuccess());
+    }
+
+    private void printSuccessOrFail(boolean success) {
+        if (success) {
+            System.out.print("O ");
+            return;
+        }
+        System.out.print("X ");
     }
 
     /**
